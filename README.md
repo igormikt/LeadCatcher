@@ -83,6 +83,8 @@ bash
 Endpoints
 📥 POST /lead — Создание заявки
 
+![Streamlit Админка](images/streamlit_admin3.jpg)
+ 
  Streamlit админка
 Веб-интерфейс для удобного просмотра и управления заявками.
 Функции админки:
