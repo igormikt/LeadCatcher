@@ -1,0 +1,45 @@
+=====================================
+ПРИМЕРЫ НЕКОРРЕКТНЫХ ЗАЯВОК
+=====================================
+
+1. ОШИБКА: Отсутствует поле contact
+   Файл: no_contact.json
+   Ожидаемый ответ: HTTP 400
+   Сообщение: "field required"
+
+2. ОШИБКА: Пустое поле name
+   JSON: {"name": "", "contact": "+79990000000", "source": "landing"}
+   Ожидаемый ответ: HTTP 400
+   Сообщение: "ensure this value has at least 1 characters"
+
+3. ОШИБКА: Отсутствует поле source
+   JSON: {"name": "Тест", "contact": "+79990000000"}
+   Ожидаемый ответ: HTTP 400
+   Сообщение: "field required"
+
+4. ОШИБКА: Неверный формат JSON
+   Текст: {name: "Тест", contact: "+79990000000"}
+   Ожидаемый ответ: HTTP 400
+   Сообщение: "Invalid JSON"
+
+=====================================
+КАК ТЕСТИРОВАТЬ
+=====================================
+
+Через Swagger UI:
+1. Открой http://127.0.0.1:8000/docs
+2. POST /lead → Try it out
+3. Вставь JSON из примеров
+4. Execute → смотри ответ
+
+Через curl (Git Bash):
+curl -X POST http://127.0.0.1:8000/lead \
+  -H "Content-Type: application/json" \
+  -d @examples/valid.json
+
+Через PowerShell:
+$body = Get-Content "examples/valid.json" -Raw
+Invoke-RestMethod -Uri "http://127.0.0.1:8000/lead" `
+  -Method Post `
+  -ContentType "application/json" `
+  -Body $body

@@ -1,0 +1,121 @@
+{
+  "tests": [
+    {
+      "id": 1,
+      "name": "✅ Корректная заявка с телефона",
+      "payload": {
+        "name": "Ирина",
+        "contact": "+79990000000",
+        "source": "landing",
+        "comment": "Хочу консультацию"
+      },
+      "expected_status": 200,
+      "description": "Все поля заполнены корректно"
+    },
+    {
+      "id": 2,
+      "name": "✅ Заявка с email",
+      "payload": {
+        "name": "Алексей Петров",
+        "contact": "alexey@mail.ru",
+        "source": "instagram",
+        "comment": "Интересует цена"
+      },
+      "expected_status": 200,
+      "description": "Contact может быть email"
+    },
+    {
+      "id": 3,
+      "name": "✅ Заявка из ВКонтакте",
+      "payload": {
+        "name": "Мария Сидорова",
+        "contact": "https://vk.com/maria",
+        "source": "vk",
+        "comment": "Запись на пробный урок"
+      },
+      "expected_status": 200,
+      "description": "Источник vk"
+    },
+    {
+      "id": 4,
+      "name": "✅ Заявка из Telegram",
+      "payload": {
+        "name": "Дмитрий",
+        "contact": "@dmitry",
+        "source": "telegram",
+        "comment": ""
+      },
+      "expected_status": 200,
+      "description": "Comment может быть пустым"
+    },
+    {
+      "id": 5,
+      "name": "✅ Заявка с длинным комментарием",
+      "payload": {
+        "name": "Елена",
+        "contact": "+79991111111",
+        "source": "landing",
+        "comment": "Мне нужна подробная консультация по всем услугам. Интересует пакет премиум. Позвоните пожалуйста завтра после 15:00."
+      },
+      "expected_status": 200,
+      "description": "Длинный комментарий допускается"
+    },
+    {
+      "id": 6,
+      "name": "❌ Нет обязательного поля contact",
+      "payload": {
+        "name": "Тест",
+        "source": "landing",
+        "comment": "Нет contact"
+      },
+      "expected_status": 400,
+      "description": "Ожидается HTTP 400 — поле contact обязательно"
+    },
+    {
+      "id": 7,
+      "name": "❌ Нет обязательного поля name",
+      "payload": {
+        "contact": "+79990000000",
+        "source": "landing",
+        "comment": "Нет name"
+      },
+      "expected_status": 400,
+      "description": "Ожидается HTTP 400 — поле name обязательно"
+    },
+    {
+      "id": 8,
+      "name": "❌ Нет обязательного поля source",
+      "payload": {
+        "name": "Тест",
+        "contact": "+79990000000",
+        "comment": "Нет source"
+      },
+      "expected_status": 400,
+      "description": "Ожидается HTTP 400 — поле source обязательно"
+    },
+    {
+      "id": 9,
+      "name": "❌ Пустое поле name",
+      "payload": {
+        "name": "",
+        "contact": "+79990000000",
+        "source": "landing",
+        "comment": "Пустое name"
+      },
+      "expected_status": 400,
+      "description": "Ожидается HTTP 400 — name не может быть пустым"
+    },
+    {
+      "id": 10,
+      "name": "❌ Пустое поле contact",
+      "payload": {
+        "name": "Тест",
+        "contact": "",
+        "source": "landing",
+        "comment": "Пустое contact"
+      },
+      "expected_status": 400,
+      "description": "Ожидается HTTP 400 — contact не может быть пустым"
+    }
+  ]
+}
